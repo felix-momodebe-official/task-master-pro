@@ -45,6 +45,7 @@ jobs:
       run: |
          sudo apt install docker.io -y
          docker version
+         sudo usermod -aG docker ${USER}
          sudo chmod 666 /var/run/docker.sock
 
     - name: Install SonarQube using Docker Container

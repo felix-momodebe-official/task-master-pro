@@ -48,6 +48,7 @@ jobs:
          
     - name: Install SonarQube using Docker Container
       run: |
+        docker stop $(docker ps -q)
         docker run -d -p 9000:9000 sonarqube:lts-community
         docker ps
       

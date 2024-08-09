@@ -38,10 +38,10 @@ jobs:
         sudo apt-get update -y
         sudo apt-get install trivy -y
 
-    - name: Trivy fs Scan
+    - name: FS SCAN 1; Trivy fs Scan
       run: trivy fs --format table -o fs.html .
 
-    - name: Run Trivy vulnerability scanner in fs mode
+    - name: FS SCAN 2; Run Trivy vulnerability scanner in fs mode
       uses: aquasecurity/trivy-action@0.20.0
       with:
         scan-type: 'fs'
@@ -78,13 +78,7 @@ jobs:
     - name: Trivy Image Scan
       run: trivy image --format table -o image.html felix081/taskmaster:latest
 
-    - name: Run Trivy vulnerability scanner in Image mode
-      uses: aquasecurity/trivy-action@0.20.0
-      with:
-        scan-type: 'image'
-        input: felix081/taskmaster:latest
-        scan-ref: '.'
-        trivy-config: trivy.yaml
+    
       
 
     

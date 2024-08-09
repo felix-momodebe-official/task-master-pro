@@ -86,7 +86,7 @@ jobs:
 
     - name: Push Docker Image
       run: |
-         docker push -t felix081/taskmaster:latest
+         docker push  felix081/taskmaster:latest
 
     
       

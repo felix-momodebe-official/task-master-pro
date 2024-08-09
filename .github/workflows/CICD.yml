@@ -82,7 +82,8 @@ jobs:
       uses: aquasecurity/trivy-action@0.20.0
       with:
         scan-type: 'image'
-        scan-ref: 'felix081/taskmaster:latest'
+        input: felix081/taskmaster:latest
+        scan-ref: '.'
         trivy-config: trivy.yaml
       
 

@@ -39,7 +39,7 @@ jobs:
         sudo apt-get install trivy -y
 
     - name: Trivy fs Scan
-      run: trivy fs --format table -o fs.reprot .
+      run: trivy fs --format table -o fs.html .
 
     - name: Install Docker
       run: |
@@ -51,6 +51,12 @@ jobs:
       run: |
         docker run -d -p 9000:9000 sonarqube:lts-community
         docker ps
+
+    - name: SonarQube Scan
+      uses: sonarsource/sonarqube-scan-action@main
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
       
 
     

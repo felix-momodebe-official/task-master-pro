@@ -41,6 +41,13 @@ jobs:
     - name: Trivy fs Scan
       run: trivy fs --format table -o fs.html .
 
+    - name: Run Trivy vulnerability scanner in fs mode
+      uses: aquasecurity/trivy-action@0.20.0
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        trivy-config: trivy.yaml
+
     - name: Install Docker
       run: |
          sudo apt install docker.io -y
@@ -57,6 +64,26 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build Docker Image
+      run: |
+       docker build -t felix081/taskmaster:latest .
+
+    - name: Trivy Image Scan
+      run: trivy image --format table -o image.html felix081/taskmaster:latest
+
+    - name: Run Trivy vulnerability scanner in Image mode
+      uses: aquasecurity/trivy-action@0.20.0
+      with:
+        scan-type: 'image'
+        scan-ref: 'felix081/taskmaster:latest'
+        trivy-config: trivy.yaml
       
 
     

@@ -1,6 +1,6 @@
 
 
-name: CICD Pipeline
+name: Dev_Pipeline
 
 on:
   push:

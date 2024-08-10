@@ -41,12 +41,12 @@ jobs:
     - name: FS SCAN 1; Trivy fs Scan
       run: trivy fs --format table -o fs.html .
 
-    - name: FS SCAN 2; Run Trivy vulnerability scanner in fs mode
-      uses: aquasecurity/trivy-action@0.20.0
-      with:
-        scan-type: 'fs'
-        scan-ref: '.'
-        trivy-config: trivy.yaml
+    # - name: FS SCAN 2; Run Trivy vulnerability scanner in fs mode
+    #   uses: aquasecurity/trivy-action@0.20.0
+    #   with:
+    #     scan-type: 'fs'
+    #     scan-ref: '.'
+    #     trivy-config: trivy.yaml
 
     - name: Install Docker
       run: |
